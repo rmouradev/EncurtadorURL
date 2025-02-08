@@ -2,14 +2,19 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Encurtador de URL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encurtador de Links</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <meta name="google-adsense-account" content="ca-pub-1340887509407513">
 </head>
 <body>
-    <h2>Encurtador de Links</h2>
-    <form method="POST">
-        <input type="url" name="url" required placeholder="Insira a URL">
-        <button type="submit">Encurtar</button>
-    </form>
+    <div class="container">
+        <h1>Encurtador de Links</h1>
+        <input type="text" id="url" placeholder="Cole seu link aqui...">
+        <button onclick="encurtarLink()">Encurtar</button>
+        <div id="resultado"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

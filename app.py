@@ -1,45 +1,69 @@
-from flask import Flask, request, redirect, render_template
-from flask_sqlalchemy import SQLAlchemy
-import string, random
+from flask import Flask, request, jsonify, render_template, redirect
+import sqlite3
+import hashlib
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///urls.db'
-db = SQLAlchemy(app)
 
-class URL(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    original_url = db.Column(db.String(500), nullable=False)
-    short_url = db.Column(db.String(10), unique=True, nullable=False)
+# Criar o banco de dados e a tabela se não existir
+def criar_tabela():
+    conexao = sqlite3.connect("database.db")
+    cursor = conexao.cursor()
+    cursor.execute('''CREATE TABLE IF NOT EXISTS links (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        url_original TEXT NOT NULL,
+                        url_encurtada TEXT NOT NULL)''')
+    conexao.commit()
+    conexao.close()
 
-def generate_short_url():
-    chars = string.ascii_letters + string.digits
-    return ''.join(random.choices(chars, k=6))
+criar_tabela()  # Garante que a tabela existe
 
-@app.route('/', methods=['GET', 'POST'])
+# Função para encurtar o link gerando um hash curto
+def gerar_encurtado(url):
+    hash_obj = hashlib.md5(url.encode())  # Gerando um hash MD5
+    return hash_obj.hexdigest()[:6]  # Pegando os primeiros 6 caracteres
+
+# Rota principal (renderiza o frontend)
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        original_url = request.form['url']
-        short_url = generate_short_url()
-        
-        while URL.query.filter_by(short_url=short_url).first():
-            short_url = generate_short_url()
+    return render_template("index.html")
 
-        new_url = URL(original_url=original_url, short_url=short_url)
-        db.session.add(new_url)
-        db.session.commit()
+# API para encurtar link
+@app.route('/encurtar', methods=['POST'])
+def encurtar():
+    data = request.json
+    url_original = data.get("url")
 
-        return f"URL encurtada: {request.host}/{short_url}"
+    if not url_original:
+        return jsonify({"erro": "Nenhuma URL fornecida"}), 400
 
-    return render_template('index.html')
+    url_encurtada = gerar_encurtado(url_original)
+    
+    # Captura o domínio atual do site automaticamente
+    dominio_atual = request.host_url  # Exemplo: "https://meusite.com/"
+    link_final = f"{dominio_atual}{url_encurtada}"  # Cria o link encurtado correto
 
-@app.route('/<short_url>')
-def redirect_to_url(short_url):
-    url_entry = URL.query.filter_by(short_url=short_url).first()
-    if url_entry:
-        return redirect(url_entry.original_url)
-    return "URL não encontrada", 404
+    # Salvar no banco SQLite
+    conexao = sqlite3.connect("database.db")
+    cursor = conexao.cursor()
+    cursor.execute("INSERT INTO links (url_original, url_encurtada) VALUES (?, ?)", (url_original, link_final))
+    conexao.commit()
+    conexao.close()
+
+    return jsonify({"link_encurtado": link_final})
+
+# Redirecionamento ao acessar um link encurtado
+@app.route('/<codigo>')
+def redirecionar(codigo):
+    conexao = sqlite3.connect("database.db")
+    cursor = conexao.cursor()
+    cursor.execute("SELECT url_original FROM links WHERE url_encurtada LIKE ?", (f"%/{codigo}",))
+    resultado = cursor.fetchone()
+    conexao.close()
+
+    if resultado:
+        return redirect(resultado[0])  # Redireciona para o link original
+    else:
+        return "Link não encontrado", 404
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
