@@ -16,8 +16,11 @@ async function encurtarLink() {
         let data = await response.json();
 
         if (response.ok) {
+            let linkCompleto = data.link_encurtado;
+            let linkSemHttp = linkCompleto.replace(/^https?:\/\//, ''); // Remove http:// ou https://
+
             document.getElementById("resultado").innerHTML = `
-                🔗 Link encurtado: <a href="${data.link_encurtado}" target="_blank">${data.link_encurtado}</a>
+                🔗 Link encurtado: <a href="${linkCompleto}" target="_blank">${linkSemHttp}</a>
             `;
         } else {
             alert("Erro ao encurtar o link: " + data.erro);
