@@ -30,3 +30,13 @@ async function encurtarLink() {
         alert("Ocorreu um erro ao conectar ao servidor.");
     }
 }
+
+/* Função para abrir/fechar menu no celular */
+function toggleMenu() {
+    let navLinks = document.querySelector(".nav-links");
+    if (navLinks.style.display === "flex") {
+        navLinks.style.display = "none";
+    } else {
+        navLinks.style.display = "flex";
+    }
+}

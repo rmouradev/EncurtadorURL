@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QYYC4SQFCT"></script>
@@ -14,18 +14,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encurtador de Links</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <meta name="google-adsense-account" content="ca-pub-1340887509407513">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1340887509407513"
      crossorigin="anonymous"></script>
 </head>
 <body>
+
+    <!-- Menu de Navegação -->
+    <nav class="navbar">
+        <div class="logo">Wer.lat</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="">Ferramentas</a></li>
+            <li><a href="">Soluções</a></li>
+            <li><a href="{{ url_for('politica') }}">Política de Privacidade</a></li>
+            <li><a href="">Publicidade</a></li>
+            <li><a href="">Contato</a></li>
+        </ul>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
     <div class="container">
-        <h1>Encurtador de Links</h1>
+        <h1 class="titulo">Encurtador de Links</h1>
+        <p class="descricao">Transforme URLs longas em versões curtas e fáceis de compartilhar, tornando a navegação mais simples e eficiente.</p>
+        
         <input type="text" id="url" placeholder="Cole seu link aqui...">
         <button onclick="encurtarLink()">Encurtar</button>
         <div id="resultado"></div>
     </div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <p class="casos-uso">
+         Ideal para redes sociais, campanhas de marketing, compartilhamento rápido e até mesmo para rastrear cliques nos seus links de forma eficiente.
+    </p>
+
+    <div class="casos-uso-container">
+        <h2>📌 Como utilizar nosso encurtador de links?</h2>
+        <p>Nosso encurtador de links pode ser utilizado de diversas formas para otimizar sua experiência online:</p>
+        
+        <div class="caso-exemplo">
+            <div class="caso">
+                <img src="{{ url_for('static', filename='img1.png') }}" alt="Compartilhamento em redes sociais">
+                <p><b>📱 Compartilhamento em redes sociais:</b> Poste links curtos no Twitter, Instagram, WhatsApp e muito mais, tornando suas postagens mais limpas e atraentes.</p>
+            </div>
+            <div class="caso">
+                <img src="{{ url_for('static', filename='img2.png') }}" alt="Uso em campanhas de marketing">
+                <p><b>📊 Campanhas de marketing:</b> Utilize URLs curtas em anúncios, banners e QR codes para maximizar o alcance da sua campanha.</p>
+            </div>
+            <div class="caso">
+                <img src="{{ url_for('static', filename='img3.png') }}" alt="Rastreamento de cliques">
+                <p><b>🔍 Rastreamento de cliques:</b> Monitore a performance dos seus links e analise estatísticas para melhorar suas estratégias digitais.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Criado por <a href="https://www.linkedin.com/in/rodrigo-moura-0a31b9340/" target="_blank">Rodrigo Moura</a></p>
+    </footer>  
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>    
 </body>
+
 </html>

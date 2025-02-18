@@ -27,6 +27,10 @@ def gerar_encurtado(url):
 def index():
     return render_template("index.html")
 
+@app.route('/politica-de-privacidade')
+def politica():
+    return render_template('politica.html')
+
 @app.route('/ads.txt')
 def noindex():
     # r = Response(response="User-Agent: *\nDisallow: /\n", status=200, mimetype="text/plain")

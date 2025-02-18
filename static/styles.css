@@ -1,19 +1,163 @@
+/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #6e8efb, #a777e3);
     color: white;
     text-align: center;
     padding: 20px;
+    margin: 0;
 }
 
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 15px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 40px;
+    font-weight: bolder;
+    color: #6e8efb;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0px 20px;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #6e8efb;
+}
+
+/* Menu responsivo */
+.menu-toggle {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+/* Conteúdo */
 .container {
     max-width: 400px;
-    margin: auto;
+    margin: 100px auto 0; /* Ajuste para compensar a navbar fixa */
     background: white;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     color: black;
+}
+
+.titulo{
+    font-size: 40px;
+    font: bolder;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #5a75e8;
+
+}
+.descricao {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.casos-uso {
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.casos-uso-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.casos-uso-container h2 {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.casos-uso-container p {
+    font-size: 16px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.caso-exemplo{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.caso {
+    max-width: 500px;
+    margin: 20px 10px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.caso img {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.caso p {
+    color: #333;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+.footer {
+    position: relative;
+    bottom: -20px;
+    width: 100%;
+    left: -20px;
+    background: #ffffff;
+    color: #333;
+    text-align: center;
+    padding: 1px 20px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer a {
+    color: #6e8efb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer a:hover {
+    color: #5a75e8;
 }
 
 input {
@@ -45,8 +189,28 @@ button:hover {
 }
 
 /* Responsividade */
-@media (max-width: 600px) {
-    .container {
-        width: 90%;
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: white;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links li {
+        padding: 15px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .caso-exemplo{
+        display: block;
     }
 }
