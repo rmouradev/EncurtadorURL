@@ -40,3 +40,18 @@ function toggleMenu() {
         navLinks.style.display = "flex";
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const cookieBanner = document.getElementById("cookie-banner");
+    const acceptCookiesButton = document.getElementById("accept-cookies");
+
+    // Verifica se o usuário já aceitou os cookies
+    if (localStorage.getItem("cookiesAccepted")) {
+        cookieBanner.style.display = "none";
+    }
+
+    acceptCookiesButton.addEventListener("click", function () {
+        localStorage.setItem("cookiesAccepted", "true");
+        cookieBanner.style.display = "none";
+    });
+});

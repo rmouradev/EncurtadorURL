@@ -188,6 +188,41 @@ button:hover {
     word-wrap: break-word;
 }
 
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.cookie-banner a {
+    color: #6e8efb;
+    text-decoration: underline;
+}
+
+.cookie-banner button {
+    background: #6e8efb;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    max-width: 90px;
+}
+
+.cookie-banner button:hover {
+    background: #5a75e8;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .nav-links {
