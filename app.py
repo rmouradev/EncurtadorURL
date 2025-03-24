@@ -31,6 +31,10 @@ def index():
 def politica():
     return render_template('politica.html')
 
+@app.route('/calculadora-credito-ctps')
+def credito():
+    return render_template('credito.html')
+
 @app.route('/ads.txt')
 def noindex():
     # r = Response(response="User-Agent: *\nDisallow: /\n", status=200, mimetype="text/plain")

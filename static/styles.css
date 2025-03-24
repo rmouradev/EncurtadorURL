@@ -68,6 +68,16 @@ body {
     color: black;
 }
 
+.container2 {
+    max-width: 400px;
+    margin: 50px auto 0; /* Ajuste para compensar a navbar fixa */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    color: black;
+}
+
 .titulo{
     font-size: 40px;
     font: bolder;
@@ -186,6 +196,19 @@ button:hover {
     margin-top: 15px;
     font-weight: bold;
     word-wrap: break-word;
+}
+
+.resultado {
+    margin-top: 15px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.alerta {
+    color: red;
+    font-weight: bold;
 }
 
 .cookie-banner {

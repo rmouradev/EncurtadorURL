@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QYYC4SQFCT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-QYYC4SQFCT');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encurtador de Links</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <meta name="google-adsense-account" content="ca-pub-1340887509407513">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1340887509407513"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Menu de Navegação -->
+    <nav class="navbar">
+        <div class="logo">Wer.lat</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('credito') }}">Calculadora Crédito CTPS</a></li>
+            <li><a href="">Soluções</a></li>
+            <li><a href="{{ url_for('politica') }}">Política de Privacidade</a></li>
+            <li><a href="">Publicidade</a></li>
+            <li><a href="">Contato</a></li>
+        </ul>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <!--conteudo pagina nova -->
+
+    <div class="container">
+        <h2>Crédito do Trabalhador</h2>
+        
+        <label for="salario">Salário Bruto (R$):</label>
+        <input type="number" id="salario" placeholder="Digite seu salário bruto">
+
+        <label for="emprestimo">Valor do Empréstimo (R$):</label>
+        <input type="number" id="emprestimo" placeholder="Digite o valor do empréstimo">
+
+        <label for="parcelas">Número de Parcelas:</label>
+        <input type="number" id="parcelas" placeholder="Digite a quantidade de parcelas">
+
+        <button onclick="calcularParcela()">Calcular</button>
+
+        <h3 id="resultado" class="resultado"></h3>
+        <p id="alerta" class="alerta"></p>
+    </div>
+
+
+    <div class="container2">
+        <h3><strong>Pergunta e respostas sobre o Crédito do Trabalhador</strong></h3>
+        <p class="callout" dir="ltr"><strong>COMO VAI FUNCIONAR?<br></strong>Por meio do app da Carteira de Trabalho Digital (CTPS Digital), o trabalhador tem a opção de requerer a proposta de crédito. Para isso, seguindo as regras da Lei Geral de Proteção de Dados (LGPD), autoriza as instituições financeiras habilitadas pelo Ministério do Trabalho a acessar dados como nome, CPF, margem do salário disponível para consignação e tempo de empresa.&nbsp;</p>
+        <p dir="ltr"><strong>QUANTO TEMPO PARA RECEBER AS OFERTAS?<br></strong>A partir da autorização de uso dos dados, o trabalhador recebe as ofertas em até 24h, analisa a melhor opção e faz a contratação no canal eletrônico do banco.&nbsp;</p>
+        <p class="callout" dir="ltr"><strong>COMO SERÁ FEITO O DESCONTO DAS PARCELAS?<br></strong>As parcelas do empréstimo serão descontadas na folha do trabalhador mensalmente, por meio do eSocial, observada a margem consignável de 35% do salário. Após a contratação, o trabalhador acompanha mês a mês as atualizações do pagamento. A partir de 25 de abril, o trabalhador também poderá fazer contratações pelos canais eletrônicos dos bancos.</p>
+        <p dir="ltr"><strong>QUEM TEM DIREITO?<br></strong>O trabalhador com carteira assinada, inclusive rurais e domésticos, além de MEIs.</p>
+        <p class="callout" dir="ltr"><strong>QUANDO O CRÉDITO DO TRABALHADOR ESTARÁ DISPONÍVEL?&nbsp;<br></strong>A partir de 21 de março de 2025.&nbsp;</p>
+        <p dir="ltr"><strong>SE EU JÁ TIVER UM CONSIGNADO, POSSO MIGRAR?&nbsp;<br></strong>Os trabalhadores que já tem empréstimos com desconto em folha podem migrar o contrato existente para o novo modelo a partir de 25 de abril deste ano.&nbsp;</p>
+        <p class="callout" dir="ltr"><strong>EM CASO DE DEMISSÃO, COMO FICAM AS PARCELAS DEVIDAS?&nbsp;&nbsp;<br></strong>No caso de desligamento, o desconto será aplicado sobre as verbas rescisórias, observado o limite legal.&nbsp;</p>
+        <p dir="ltr"><strong>O QUE PODE SER DADO COMO GARANTIA DE PAGAMENTO DO EMPRÉSTIMO?&nbsp;<br></strong>O trabalhador pode usar até 10% do saldo no FGTS para garantias e ainda 100% da multa rescisória em caso de demissão.&nbsp;</p>
+        <p class="callout" dir="ltr"><strong>O PROCESSO É SÓ PELA CARTEIRA DIGITAL OU POSSO IR AOS BANCOS?&nbsp;<br></strong>Inicialmente, somente na CTPS Digital. A partir de 25 de abril, o trabalhador poderá também iniciar contratações pelos canais eletrônicos dos bancos. Pela CTPS Digital, o trabalhador tem a possibilidade de receber propostas de todos os bancos interessados, o que permite comparação e a escolha mais vantajosa.&nbsp;</p>
+        <p dir="ltr"><strong>AS OPERAÇÕES SERÃO SÓ POR BANCOS HABILITADOS?&nbsp;<br></strong>Sim. A estimativa é que mais de 80 instituições financeiras estejam habilitadas. O início da habilitação se dará a partir da publicação da Medida Provisória.&nbsp;</p>
+        <p class="callout" dir="ltr"><strong>OS BANCOS TERÃO ACESSO A TODOS OS DADOS DO TRABALHADOR?&nbsp;<br></strong>Apenas os dados necessários para que as instituições façam propostas de crédito: nome, CPF, margem do salário disponível para consignação e tempo de empresa.&nbsp;</p>
+        <p dir="ltr"><strong>SERÁ AUTOMÁTICA A MIGRAÇÃO DO CRÉDITO DIRETO AO CONSUMIDOR (CDC) PARA O CRÉDITO DO TRABALHADOR?&nbsp;<br></strong>O trabalhador que tiver CDC deve procurar uma instituição financeira habilitada, caso queira fazer a migração para o Crédito Trabalhador.</p>
+        <p class="callout" dir="ltr"><strong>DEPOIS DE REALIZAR O CRÉDITO DO TRABALHADOR, O TRABALHADOR PODE FAZER A PORTABILIDADE PARA UM BANCO COM TAXAS MELHORES?</strong>&nbsp;<br>Sim. A portabilidade estará disponível a partir de junho de 2025.&nbsp;</p>
+        <p dir="ltr"><strong>O CRÉDITO DO TRABALHADOR SUBSTITUI O SAQUE-ANIVERSÁRIO?&nbsp;<br></strong>Não, o Saque-Aniversário continuará em vigor.</p>
+        </div>
+
+
+    <div id="cookie-banner" class="cookie-banner">
+        <p>Este site utiliza cookies para melhorar a experiência do usuário. <a href="/politica-de-privacidade">Saiba mais</a>.</p>
+        <button id="accept-cookies">Aceitar</button>
+    </div>  
+
+    <footer class="footer">
+        <p>Criado por <a href="https://www.linkedin.com/in/rodrigo-moura-0a31b9340/" target="_blank">Rodrigo Moura</a></p>
+    </footer>  
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>    
+</body>
+
+</html>

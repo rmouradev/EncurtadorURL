@@ -55,3 +55,39 @@ document.addEventListener("DOMContentLoaded", function () {
         cookieBanner.style.display = "none";
     });
 });
+
+function calcularParcela() {
+    const salario = parseFloat(document.getElementById("salario").value);
+    const emprestimo = parseFloat(document.getElementById("emprestimo").value);
+    const parcelas = parseInt(document.getElementById("parcelas").value);
+    
+    if (isNaN(salario) || isNaN(emprestimo) || isNaN(parcelas) || salario <= 0 || emprestimo <= 0 || parcelas <= 0) {
+        alert("Por favor, preencha todos os campos corretamente.");
+        return;
+    }
+
+    const margemConsignavel = salario * 0.35;
+    const taxaJuros = 0.018; // 1.8% ao mês
+
+    // Cálculo da parcela com juros compostos (Fórmula do sistema PRICE)
+    const parcela = (emprestimo * taxaJuros) / (1 - Math.pow(1 + taxaJuros, -parcelas));
+
+    const valorTotal = parcela * parcelas;
+    const vezesAntes = margemConsignavel / parcela;
+
+    // Exibir resultados
+    const resultado = document.getElementById("resultado");
+    resultado.innerHTML = `
+        <p><strong>Margem Consignável:</strong> R$ ${margemConsignavel.toFixed(2)}</p>
+        <p><strong>Valor da Parcela:</strong>  ${parcelas.toFixed(0)} x de R$ ${parcela.toFixed(2)}</p>
+        <p><strong>Valor Total das Parcelas:</strong> R$ ${valorTotal.toFixed(2)}</p>
+    
+    `;
+
+    const alerta = document.getElementById("alerta");
+    if (parcela > margemConsignavel) {
+        alerta.innerHTML = "A parcela está acima da margem consignável!";
+    } else {
+        alerta.innerHTML = "";
+    }
+}

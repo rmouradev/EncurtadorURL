@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QYYC4SQFCT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-QYYC4SQFCT');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encurtador de Links</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <meta name="google-adsense-account" content="ca-pub-1340887509407513">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1340887509407513"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Menu de Navegação -->
+    <nav class="navbar">
+        <div class="logo">Wer.lat</div>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="">Ferramentas</a></li>
+            <li><a href="">Soluções</a></li>
+            <li><a href="{{ url_for('politica') }}">Política de Privacidade</a></li>
+            <li><a href="">Publicidade</a></li>
+            <li><a href="">Contato</a></li>
+        </ul>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <!--conteudo pagina nova -->
+
+    <div id="cookie-banner" class="cookie-banner">
+        <p>Este site utiliza cookies para melhorar a experiência do usuário. <a href="/politica-de-privacidade">Saiba mais</a>.</p>
+        <button id="accept-cookies">Aceitar</button>
+    </div>  
+
+    <footer class="footer">
+        <p>Criado por <a href="https://www.linkedin.com/in/rodrigo-moura-0a31b9340/" target="_blank">Rodrigo Moura</a></p>
+    </footer>  
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>    
+</body>
+
+</html>
